@@ -1,0 +1,28 @@
+{
+  "name": "it-timesheet-system",
+  "version": "1.0.0",
+  "description": "IT Timesheet System - A comprehensive timesheet web application with Microsoft Entra ID authentication",
+  "scripts": {
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install:all": "npm run install:backend && npm run install:frontend",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm start",
+    "dev:backend": "cd backend && npm run dev",
+    "test:backend": "cd backend && npm test",
+    "test:frontend": "cd frontend && npm test",
+    "test:all": "npm run test:backend && npm run test:frontend",
+    "build:frontend": "cd frontend && npm run build"
+  },
+  "keywords": [
+    "timesheet",
+    "it",
+    "microsoft",
+    "entra-id",
+    "azure-ad",
+    "react",
+    "express"
+  ],
+  "author": "",
+  "license": "MIT"
+}
