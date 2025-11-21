@@ -12,14 +12,23 @@ const TimesheetList = ({ refreshTrigger, onEdit }) => {
   const [summary, setSummary] = useState(null);
 
   useEffect(() => {
-    loadTimesheets();
-    loadSummary();
+    const loadData = async () => {
+      await loadTimesheets();
+      await loadSummary();
+    };
+    loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refreshTrigger, accounts]);
 
   const loadTimesheets = async () => {
     try {
       setLoading(true);
-      setAuthToken('demo-token'); // In production, use actual token
+      // SECURITY NOTE: Using demo token for development
+      // In production, use actual MSAL token: 
+      // const { instance, accounts } = useMsal();
+      // const response = await instance.acquireTokenSilent({ scopes: ["api://your-api/access"], account: accounts[0] });
+      // setAuthToken(response.accessToken);
+      setAuthToken('demo-token'); // TODO: Replace with actual token in production
       const userId = accounts[0]?.username || 'user@example.com';
       const response = await timesheetService.getAll({ userId });
       setTimesheets(response.data.sort((a, b) => new Date(b.date) - new Date(a.date)));
@@ -34,7 +43,7 @@ const TimesheetList = ({ refreshTrigger, onEdit }) => {
 
   const loadSummary = async () => {
     try {
-      setAuthToken('demo-token');
+      setAuthToken('demo-token'); // TODO: Replace with actual token in production
       const userId = accounts[0]?.username || 'user@example.com';
       const response = await timesheetService.getSummary({ userId });
       setSummary(response.data);

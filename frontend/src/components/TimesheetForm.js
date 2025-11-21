@@ -32,7 +32,12 @@ const TimesheetForm = ({ onSuccess, editingTimesheet, onCancel }) => {
 
   const loadJobTypes = async () => {
     try {
-      setAuthToken('demo-token'); // In production, use actual token
+      // SECURITY NOTE: Using demo token for development
+      // In production, use actual MSAL token: 
+      // const { instance, accounts } = useMsal();
+      // const response = await instance.acquireTokenSilent({ scopes: ["api://your-api/access"], account: accounts[0] });
+      // setAuthToken(response.accessToken);
+      setAuthToken('demo-token'); // TODO: Replace with actual token in production
       const response = await jobTypesService.getAll();
       setJobTypes(response.data);
     } catch (err) {

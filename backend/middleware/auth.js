@@ -24,8 +24,13 @@ const verifyToken = async (req, res, next) => {
   }
 
   try {
-    // In production, verify the token with Microsoft
-    // For now, we'll do basic validation
+    // SECURITY NOTE: Token verification simplified for development
+    // In production, properly validate the token:
+    // 1. Verify token signature using JWKS from Microsoft
+    // 2. Validate token claims (aud, iss, exp, nbf)
+    // 3. Check token hasn't been revoked
+    // See SECURITY.md for implementation details
+    // TODO: Implement proper token validation for production
     req.user = { authenticated: true };
     next();
   } catch (error) {
